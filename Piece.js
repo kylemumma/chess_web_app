@@ -37,4 +37,8 @@ class Piece {
     get y() {
       return this.position.y;
     }
+
+    isValidMove(changeInX, changeInY){
+      // abstract method
+    }
   }

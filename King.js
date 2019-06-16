@@ -10,4 +10,9 @@ class King extends Piece {
 
         this.DIAMETER = 75;
     }
+
+    isValidMove(changeInX, changeInY){
+        return (Math.abs(changeInX) == 1 || changeInX == 0) &&
+            (Math.abs(changeInY) == 1 || changeInY == 0);
+    }
 }

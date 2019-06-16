@@ -10,9 +10,9 @@ class Cell {
         this.m_piece = piece;
 
         if(cellColor == 0) {
-            this.m_color = color(34, 139, 34); // green
-        } else {
             this.m_color = color(220); // light grey
+        } else {
+            this.m_color = color(34, 139, 34); // green
         }
     }
 

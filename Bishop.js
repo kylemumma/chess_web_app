@@ -10,4 +10,8 @@ class Bishop extends Piece {
 
         this.DIAMETER = 75;
     }
+
+    isValidMove(changeInX, changeInY){
+        return Math.abs(changeInX) == Math.abs(changeInY);
+    }
 }

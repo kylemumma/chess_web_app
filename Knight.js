@@ -10,4 +10,9 @@ class Knight extends Piece {
 
         this.DIAMETER = 75;
     }
+
+    isValidMove(changeInX, changeInY){
+        return (Math.abs(changeInX) == 1 && Math.abs(changeInY) == 2) ||
+            (Math.abs(changeInX) == 2 && Math.abs(changeInY) == 1);
+    }
 }

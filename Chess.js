@@ -111,25 +111,31 @@ function draw() {
     }
 }
 
-
 let x, y;
-function mousePressed() {
-    x = Math.floor(mouseX / 75);
-    y = Math.floor(mouseY / 75);
-    
-    // pick up piece
-    pieceInHand = cells[x][y].getPiece();
-    cells[x][y].m_piece = null;
+function mousePressed(event) {
+    if(event['button'] == 0) { // only allow left clicks
+        x = Math.floor(mouseX / 75);
+        y = Math.floor(mouseY / 75);
+        
+        // pick up piece
+        pieceInHand = cells[x][y].getPiece();
+        cells[x][y].m_piece = null;
+    }
 }
 
 function mouseReleased() {
-    if(mouseX < 600 && mouseX > 0 && mouseY < 600 && mouseY > 0){
-        x = Math.floor(mouseX / 75);
-        y = Math.floor(mouseY / 75);
-    }
-
-    // set piece down
     if(pieceInHand != null) {
+        newX = Math.floor(mouseX / 75);
+        newY = Math.floor(mouseY / 75);
+    
+        // change pieces position to new position
+        if(mouseX < 600 && mouseX > 0 && mouseY < 600 && mouseY > 0 &&
+            pieceInHand.isValidMove(newX - x, newY - y)){
+            x = newX;
+            y = newY;
+        }
+    
+        // set piece down
         cells[x][y].m_piece = pieceInHand;
         cells[x][y].m_piece.position = createVector(x, y);
         pieceInHand = null;

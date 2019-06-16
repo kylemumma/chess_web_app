@@ -10,4 +10,9 @@ class Rook extends Piece {
 
         this.DIAMETER = 75;
     }
+
+    isValidMove(changeInX, changeInY){
+        return (changeInX != 0 && changeInY == 0) ||
+            (changeInX == 0 && changeInY != 0);
+    }
 }
