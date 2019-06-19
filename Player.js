@@ -4,6 +4,7 @@ class Player {
     */
     constructor(pieceColor) {
         this.m_color = pieceColor;
+        this.isNext = false;
 
         if(pieceColor == 0)
             this.m_name = 'black';

@@ -1,13 +1,15 @@
-let cells, white, black, pieces;
-let pieceInHand;
+let cells, white, black, pieces, pieceInHand;
 
 function setup() {
     // setup code executed at start of program
-    createCanvas(600, 600);
+    let canvas = createCanvas(600, 600);
+    canvas.parent('chess-window');
 
     // set up players
     black = new Player(0);
     white = new Player(1);
+
+    white.isNext = true;
 
     /* -- set up pieces array -- */
     pieces = new Array(8);
@@ -109,14 +111,33 @@ function draw() {
         //show the piece in hand
         pieceInHand.freePositionShow(mouseX, mouseY);
     }
+
+    // display whos turn it is
+    let currentPlayer;
+    let currentPlayerElement = document.querySelector('#current-player');
+
+    if(white.isNext){
+        currentPlayerElement.style.backgroundColor = 'white';
+        currentPlayerElement.style.color = 'black';
+        currentPlayerElement.style.border = '1px solid black';
+        currentPlayer = 'white';
+    } else {
+        currentPlayerElement.style.backgroundColor = '#181818';
+        currentPlayerElement.style.color = 'white';
+        currentPlayerElement.style.border = '1px solid white';
+        currentPlayer = 'black';
+    }
+
+    currentPlayerElement.textContent = "It's " + currentPlayer + "'s turn";
 }
 
 let x, y;
 function mousePressed(event) {
-    if(event['button'] == 0) { // only allow left clicks
-        x = Math.floor(mouseX / 75);
-        y = Math.floor(mouseY / 75);
-        
+    let selectedCell = createVector(Math.floor(mouseX / 75), Math.floor(mouseY / 75));
+    if(event['button'] == 0 && // only allow left clicks
+        cells[selectedCell.x][selectedCell.y].getPiece().player.isNext) { // only pick up the piece if its that color's turn
+        x = selectedCell.x;
+        y = selectedCell.y;
         // pick up piece
         pieceInHand = cells[x][y].getPiece();
         cells[x][y].m_piece = null;
@@ -125,14 +146,23 @@ function mousePressed(event) {
 
 function mouseReleased() {
     if(pieceInHand != null) {
-        newX = Math.floor(mouseX / 75);
-        newY = Math.floor(mouseY / 75);
+        let newX = Math.floor(mouseX / 75);
+        let newY = Math.floor(mouseY / 75);
     
+        let changeInX = newX - x;
+        let changeInY = newY - y;
+
         // change pieces position to new position
         if(mouseX < 600 && mouseX > 0 && mouseY < 600 && mouseY > 0 &&
-            pieceInHand.isValidMove(newX - x, newY - y)){
+            pieceInHand.isValidMove(changeInX, changeInY)){
             x = newX;
             y = newY;
+
+            // switch whos turn it is
+            if(!(changeInX == 0 && changeInY == 0)){
+                white.isNext = !white.isNext;
+                black.isNext = !black.isNext;
+            }
         }
     
         // set piece down

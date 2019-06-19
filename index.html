@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
+    <link rel='stylesheet' href='main.css' type='text/css'>
+
     <script src="Chess.js"></script>
     <script src="Cell.js"></script>
     <script src="Player.js"></script>
@@ -20,6 +23,13 @@
 
     <title>Chess</title>
 </head>
-<body>
+<body class='container-fluid text-center'>
+    <h1 class="display-4 mb-3">Chess Puzzles</h1>
+    <div id="game-area">
+        <div id="chess-window">
+            <!-- playable chess window will go here -->
+        </div>
+        <p id="current-player" class="lead px-2 mt-2">It's blanks turn</p>
+    </div>
 </body>
 </html>
