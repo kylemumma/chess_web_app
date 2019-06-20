@@ -45,10 +45,12 @@ class Cell {
         fill(this.m_color);
         rectMode(CORNER);
         rect(this.position.x * this.SIZE, this.position.y * this.SIZE, this.SIZE, this.SIZE);
-        console.log(this.state + " " + this.x + " " + this.y);
         if (this.state == 1) {
             noStroke();
-            fill('rgba(255, 255, 0, 0.4)');
+            if (this.m_piece != null && this.m_piece != undefined)
+                fill('rgba(255, 0, 0, 0.4)');
+            else
+                fill('rgba(255, 255, 0, 0.4)');
             rectMode(CORNER);
             rect(this.position.x * this.SIZE, this.position.y * this.SIZE, this.SIZE, this.SIZE);
         }
