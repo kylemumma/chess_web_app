@@ -141,7 +141,11 @@ function mousePressed(event) {
         // pick up piece
         pieceInHand = cells[x][y].getPiece();
         cells[x][y].m_piece = null;
-        console.log(pieceInHand.potentialMoves());
+        let potentialCells = pieceInHand.potentialMoves(cells);
+        console.log(potentialCells.length);
+        for (let cellNumber = 0; cellNumber < potentialCells.length; cellNumber++) {
+            cells[potentialCells[cellNumber][0]][potentialCells[cellNumber][1]].possibleCell();
+        }
     }
 }
 
@@ -170,5 +174,14 @@ function mouseReleased() {
         cells[x][y].m_piece = pieceInHand;
         cells[x][y].m_piece.position = createVector(x, y);
         pieceInHand = null;
+    }
+
+    background(255);
+  
+    // show board
+    for(let cellRow of cells){
+        for(let cell of cellRow){
+            cell.reset();
+        }
     }
 }

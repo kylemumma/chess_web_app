@@ -8,6 +8,7 @@ class Cell {
         this.SIZE = 75;
         this.position = createVector(x, y);
         this.m_piece = piece;
+        this.cellColor = cellColor;
 
         if(cellColor == 0) {
             this.m_color = color(220); // light grey
@@ -18,6 +19,22 @@ class Cell {
 
     getPiece(){
         return this.m_piece;
+    }
+
+    possibleCell() {
+        if(this.cellColor == 0) {
+            this.m_color = color(255, 128, 128); // light grey
+        } else {
+            this.m_color = color(255, 51, 51); // green
+        }
+    }
+
+    reset() {
+        if(this.cellColor == 0) {
+            this.m_color = color(220); // light grey
+        } else {
+            this.m_color = color(34, 139, 34); // green
+        }
     }
 
     show() {
