@@ -141,6 +141,10 @@ function mousePressed(event) {
         // pick up piece
         pieceInHand = cells[x][y].getPiece();
         cells[x][y].m_piece = null;
+        let potentialCells = pieceInHand.potentialMoves(cells); // get an array of potential cells where piece can move
+        for (let cellNumber = 0; cellNumber < potentialCells.length; cellNumber++) {
+            cells[potentialCells[cellNumber][0]][potentialCells[cellNumber][1]].setPossibleCell(); // highlight all potential cells where piece can move
+        }
     }
 }
 
@@ -169,5 +173,12 @@ function mouseReleased() {
         cells[x][y].m_piece = pieceInHand;
         cells[x][y].m_piece.position = createVector(x, y);
         pieceInHand = null;
+    }
+
+    // reset board to original colors
+    for(let cellRow of cells){
+        for(let cell of cellRow){
+            cell.reset();
+        }
     }
 }
