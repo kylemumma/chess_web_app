@@ -75,11 +75,11 @@ function setup() {
     // set up board
     cells = new Array(8);
 
-    for(let row = 0; row < 8; row++){
-        cells[row] = new Array(8);
+    for(let col = 0; col < 8; col++){
+        cells[col] = new Array(8);
 
-        for(let col = 0; col < 8; col++){
-            cells[row][col] = new Cell(row, col, (row+col)%2, pieces[row][col]);
+        for(let row = 0; row < 8; row++){
+            cells[col][row] = new Cell(col, row, (col+row)%2, pieces[col][row]);
         }
     }
 }
@@ -154,7 +154,7 @@ function mouseReleased() {
 
         // change pieces position to new position
         if(mouseX < 600 && mouseX > 0 && mouseY < 600 && mouseY > 0 &&
-            pieceInHand.isValidMove(changeInX, changeInY)){
+            pieceInHand.isValidMove(x, newX, y, newY, cells)){
             x = newX;
             y = newY;
 

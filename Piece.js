@@ -11,6 +11,21 @@ class Piece {
       this.player = p;
       this.img = img;
     }
+
+    pieceExistsOnCell(x, y, cellsArray){
+      if(cellsArray[x][y].getPiece() != null &&
+      cellsArray[x][y].getPiece() != undefined){
+          return true;
+      }
+      return false;
+    }
+
+    isValidPieceTake(x, y, cellsArray){
+      if(this.pieceExistsOnCell(x, y, cellsArray)){
+        return this.player.name != cellsArray[x][y].getPiece().player.name;
+      }
+      return true;
+    }
     
     show() {
       imageMode(CENTER);
