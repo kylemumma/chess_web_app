@@ -9,6 +9,7 @@ class Cell {
         this.position = createVector(x, y);
         this.m_piece = piece;
         this.cellColor = cellColor;
+        this.state = 0;
 
         if(cellColor == 0) {
             this.m_color = color(220); // light grey
@@ -22,19 +23,21 @@ class Cell {
     }
 
     possibleCell() {
-        if(this.cellColor == 0) {
-            this.m_color = color(255, 128, 128); // light grey
-        } else {
-            this.m_color = color(255, 51, 51); // green
-        }
+        this.state = 1;
+        // if(this.cellColor == 0) {
+        //     this.m_color = color(255, 128, 128); // light grey
+        // } else {
+        //     this.m_color = color(255, 51, 51); // green
+        // }
     }
 
     reset() {
-        if(this.cellColor == 0) {
-            this.m_color = color(220); // light grey
-        } else {
-            this.m_color = color(34, 139, 34); // green
-        }
+        this.state = 0;
+        // if(this.cellColor == 0) {
+        //     this.m_color = color(220); // light grey
+        // } else {
+        //     this.m_color = color(34, 139, 34); // green
+        // }
     }
 
     show() {
@@ -42,5 +45,12 @@ class Cell {
         fill(this.m_color);
         rectMode(CORNER);
         rect(this.position.x * this.SIZE, this.position.y * this.SIZE, this.SIZE, this.SIZE);
+        console.log(this.state + " " + this.x + " " + this.y);
+        if (this.state == 1) {
+            noStroke();
+            fill('rgba(255, 255, 0, 0.4)');
+            rectMode(CORNER);
+            rect(this.position.x * this.SIZE, this.position.y * this.SIZE, this.SIZE, this.SIZE);
+        }
     }
 }
