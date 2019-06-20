@@ -23,7 +23,7 @@ class Cell {
     }
 
     // sets cell state to highlighted
-    possibleCell() {
+    setPossibleCell() {
         this.isHighlighted = 1;
     }
 
@@ -34,6 +34,7 @@ class Cell {
 
     show() {
         noStroke();
+        // sets tile color to red if it contains a piece and is green
         if (this.isHighlighted == 1 && this.m_piece != null && this.m_piece != undefined && this.cellColor == 1) {
             fill(color(255, 133, 102));
         }
@@ -44,9 +45,11 @@ class Cell {
         rect(this.position.x * this.SIZE, this.position.y * this.SIZE, this.SIZE, this.SIZE);
         if (this.isHighlighted == 1) {
             noStroke();
+            // highlights tile red
             if (this.m_piece != null && this.m_piece != undefined ) {
                 fill('rgba(255, 0, 0, 0.3)');
             }
+            // highlights tile yellow
             else {
                 fill('rgba(255, 255, 0, 0.3)');
             }
