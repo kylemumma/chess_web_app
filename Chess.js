@@ -141,6 +141,7 @@ function mousePressed(event) {
         // pick up piece
         pieceInHand = cells[x][y].getPiece();
         cells[x][y].m_piece = null;
+        console.log(pieceInHand.potentialMoves());
     }
 }
 

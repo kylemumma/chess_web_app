@@ -56,4 +56,16 @@ class Piece {
     isValidMove(changeInX, changeInY){
       // abstract method
     }
+
+    potentialMoves() {
+      let potentialCells = new Array();
+      for (let xPosition = 0; xPosition < 8; xPosition++) {
+        for (let yPosition = 0; yPosition < 8; yPosition++) {
+          if (this.isValidPath(xPosition - this.x, yPosition - this.y) && (xPosition != this.x || yPosition != this.y)) {
+            potentialCells.push([xPosition, yPosition]);
+          }
+        }
+      }
+      return potentialCells;
+    }
   }
